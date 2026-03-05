@@ -1,0 +1,391 @@
+/* =========================================
+   1. Google Fonts & Reset
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', "Segoe UI", sans-serif;
+}
+
+body {
+    background-color: #f4f6fb;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* =========================================
+   2. Layout Structure
+   ========================================= */
+.dashboard {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+.sidebar {
+    width: 260px;
+    background-color: #1f3c88;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.main {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background-color: #f4f6fb;
+}
+
+/* =========================================
+   3. Sidebar Links
+   ========================================= */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.logo-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    padding: 2px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.sidebar-brand h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.sidebar a {
+    display: block;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    padding: 14px 18px;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    transform: translateX(5px);
+}
+
+/* =========================================
+   4. Cards & Headings
+   ========================================= */
+.card, section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+h1 { color: #1f3c88; margin-bottom: 25px; font-weight: 700; }
+h2, h3 { color: #1f3c88; margin-bottom: 20px; font-weight: 600; }
+
+/* =========================================
+   5. Forms (Inputs & Selects)
+   ========================================= */
+input, select {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 8px 0 20px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: #1f3c88;
+    box-shadow: 0 0 0 3px rgba(31, 60, 136, 0.15);
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+/* =========================================
+   6. Buttons
+   ========================================= */
+button {
+    padding: 12px 24px;
+    border: none;
+    background-color: #1f3c88;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(31, 60, 136, 0.2);
+}
+
+button:hover {
+    background-color: #162a60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(31, 60, 136, 0.3);
+}
+
+section div > button, 
+td button {
+    padding: 8px 16px;
+    font-size: 13px;
+    margin-top: 0;
+}
+
+button[onclick*="delete"], 
+button[onclick*="Remove"],
+button[onclick*="closeReceipt"] {
+    background-color: #dc3545;
+    box-shadow: 0 2px 5px rgba(220, 53, 69, 0.2);
+}
+
+button[onclick*="delete"]:hover,
+button[onclick*="closeReceipt"]:hover {
+    background-color: #a71d2a;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* =========================================
+   7. Tables
+   ========================================= */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+}
+
+table th {
+    background-color: #f1f4fa;
+    color: #1f3c88;
+    padding: 16px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid #e1e5ee;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+table td {
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+    vertical-align: middle;
+}
+
+table tr:hover td {
+    background-color: #fafbfc;
+}
+
+/* =========================================
+   8. Tabs (Staff Dashboard)
+   ========================================= */
+.tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e1e5ee;
+}
+
+.tab-btn {
+    padding: 12px 20px;
+    background: transparent;
+    color: #777;
+    border-radius: 0;
+    border-bottom: 3px solid transparent;
+    box-shadow: none;
+    font-weight: 600;
+    margin: 0;
+}
+
+.tab-btn:hover {
+    color: #1f3c88;
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+.tab-btn.active {
+    color: #1f3c88;
+    border-bottom-color: #1f3c88;
+}
+
+/* =========================================
+   9. Badges
+   ========================================= */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.pending { background: #fd7e14; }
+.preparing { background: #007bff; }
+.ready { background: #28a745; }
+.delivered { background: #6c757d; }
+.cancelled { background: #dc3545; }
+.expired { background: #343a40; } /* Dark grey for expired */
+
+/* =========================================
+   10. Food Items (Ordering List)
+   ========================================= */
+.food-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 12px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.food-item:hover {
+    border-color: #1f3c88;
+    background: #fdfdfd;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.counter button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    background: #e9ecef;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+}
+
+.counter button:hover {
+    background: #1f3c88;
+    color: white;
+    transform: scale(1.1);
+}
+
+.counter span {
+    font-weight: bold;
+    color: #1f3c88;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.hidden { display: none !important; }
+
+/* =========================================
+   11. RECEIPT MODAL & PRINT STYLES (NEW)
+   ========================================= */
+.receipt-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.receipt-card {
+    background: white;
+    width: 380px;
+    padding: 30px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace; /* Classic receipt font */
+    color: #000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.receipt-header { text-align: center; margin-bottom: 20px; border-bottom: 2px dashed #000; padding-bottom: 15px; }
+.receipt-header h2 { color: #000; margin-bottom: 5px; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
+.receipt-header p { margin: 2px 0; font-size: 14px; }
+
+.receipt-details { margin-bottom: 20px; font-size: 14px; }
+.receipt-details p { margin: 4px 0; }
+
+.receipt-items { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+.receipt-items th { border-bottom: 1px solid #000; text-align: left; padding: 5px 0; background: none; color: #000; font-family: 'Courier New', Courier, monospace; }
+.receipt-items td { padding: 8px 0; border-bottom: 1px dashed #ccc; font-size: 14px; }
+.receipt-items td.price-col { text-align: right; }
+
+.receipt-total { border-top: 2px solid #000; padding-top: 10px; text-align: right; font-size: 18px; font-weight: bold; }
+.receipt-footer { text-align: center; margin-top: 25px; font-size: 14px; border-top: 2px dashed #000; padding-top: 15px; }
+
+.receipt-actions { display: flex; justify-content: space-between; margin-top: 25px; }
+
+/* MAGIC PRINT CSS */
+@media print {
+    /* Hide everything in the body by default */
+    body * { visibility: hidden; }
+    
+    /* Show ONLY the receipt card and its children */
+    .receipt-modal, .receipt-modal * { visibility: visible; }
+    
+    /* Position the receipt at the top left of the printable page */
+    .receipt-modal {
+        position: absolute; left: 0; top: 0;
+        background: transparent; 
+        align-items: flex-start; justify-content: flex-start;
+    }
+    .receipt-card {
+        box-shadow: none; border-radius: 0; width: 100%; max-width: 400px; margin: 0; padding: 0;
+    }
+    
+    /* Hide the buttons from the physical paper */
+    .receipt-actions { display: none !important; }
+}
+
+/* =========================================
+   12. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+    .dashboard { flex-direction: column; height: auto; overflow-y: visible; }
+    .sidebar { width: 100%; padding: 20px 15px; display: block; }
+    .sidebar h2 { margin-bottom: 20px; }
+    .sidebar-brand { margin-bottom: 15px; padding-bottom: 15px; }
+    .sidebar a { display: inline-block; margin: 5px 5px 5px 0; padding: 10px 15px; font-size: 0.85rem; }
+    .main { padding: 15px; }
+    .card, section { padding: 20px 15px; overflow-x: auto; }
+    .tabs { flex-wrap: wrap; }
+    .tab-btn { flex: 1; text-align: center; padding: 10px; font-size: 0.9rem; }
+}

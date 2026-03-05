@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard | F.L.O.W.</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="dashboard">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='">
+            <h2>F.L.O.W. Faculty</h2>
+        </div>
+        
+        <a href="#dashboard">Dashboard</a>
+        <a href="#order">Order Food</a>
+        <a href="#currentOrders">Current Orders</a>
+        <a href="#pastOrders">Past Orders</a>
+        <a href="#menu">Menu</a>
+        <a href="#account">Account Details</a>
+        <a href="index.html" onclick="localStorage.clear()">Logout</a>
+    </div>
+
+    <div class="main">
+        <h1>Faculty Dashboard</h1>
+
+        <div class="card" id="dashboard">
+            <h3>Welcome</h3>
+            <p>Active Orders: <b id="activeOrders">0</b></p>
+            <p>Orders Today: <b id="ordersToday">0</b></p>
+            <p>Total Orders: <b id="totalOrders">0</b></p>
+        </div>
+
+        <div class="card" id="order">
+            <h3>Order Food</h3>
+            <input type="text" id="searchItem" placeholder="Search food item..." onkeyup="filterItems()">
+            
+            <div id="foodList"></div>
+
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
+                <div style="margin-bottom: 15px;">
+                    <label><b>🕒 Delivery Time:</b></label>
+                    <select id="timeSlotSelect" style="margin-top: 5px; width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="">-- Select Time Slot --</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label><b>📍 Deliver to Room:</b></label>
+                    <select id="roomSelect" style="margin-top: 5px; width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="">-- Select Room --</option>
+                    </select>
+                </div>
+            </div>
+
+            <p style="margin-top: 15px; font-size: 1.1rem;"><b>Total Amount: ₹<span id="total">0</span></b></p>
+            <button onclick="placeOrder()" style="margin-top: 10px; width: 100%;">Place Order</button>
+        </div>
+
+        <div class="card" id="currentOrders">
+            <h3>Current Orders (Live)</h3>
+            <table>
+                <thead><tr><th>Order ID</th><th>Items</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="currentOrdersBody"></tbody>
+            </table>
+        </div>
+
+        <div class="card" id="pastOrders">
+            <h3>Past Orders (History)</h3>
+            <table>
+                <thead><tr><th>Order ID</th><th>Items</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="pastOrdersBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="card" id="account">
+            <h3>Account Details</h3>
+            <p><b>Email:</b> <span id="facultyEmailText"></span></p>
+        </div>
+    </div>
+</div>
+
+<div id="receiptModal" class="receipt-modal hidden">
+    <div class="receipt-card">
+        <div class="receipt-header">
+            <h2>F.L.O.W. Canteen</h2>
+            <p>St. Joseph's University</p>
+            <p>Official Order Receipt</p>
+        </div>
+        
+        <div class="receipt-details">
+            <p><b>Order ID:</b> <span id="recOrderId"></span></p>
+            <p><b>Date:</b> <span id="recDate"></span></p>
+            <p><b>Status:</b> <span id="recStatus"></span></p>
+        </div>
+
+        <table class="receipt-items">
+            <thead>
+                <tr>
+                    <th>Qty</th>
+                    <th>Item</th>
+                    <th class="price-col">Price</th>
+                </tr>
+            </thead>
+            <tbody id="recItemsBody">
+                </tbody>
+        </table>
+
+        <div class="receipt-total">
+            Total: ₹<span id="recTotal">0</span>
+        </div>
+
+        <div class="receipt-footer">
+            <p>Thank you for using F.L.O.W.!</p>
+        </div>
+
+        <div class="receipt-actions">
+            <button onclick="closeReceipt()">Close</button>
+            <button onclick="printReceipt()" style="background: #28a745;">🖨️ Print PDF</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/faculty.js"></script>
+</body>
+</html>

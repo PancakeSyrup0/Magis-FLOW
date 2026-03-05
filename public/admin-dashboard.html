@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Magis Canteen</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='">
+                <h2>Magis Admin</h2>
+            </div>
+            
+            <a href="#users">Manage Users</a>
+            <a href="#rooms">Manage Rooms</a>
+            <a href="#menu">Manage Menu</a>
+            <a href="#timeslots">Time Slots</a>
+            <a href="index.html" onclick="logout()">Logout</a>
+        </div>
+
+        <div class="main">
+            <h1>🛡️ Admin Dashboard</h1>
+
+            <section id="users">
+                <h2>👥 Users</h2>
+                <table>
+                    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Action</th></tr></thead>
+                    <tbody id="usersTable"></tbody>
+                </table>
+            </section>
+
+            <section id="timeslots">
+                <h2>⏳ Manage Time Slots</h2>
+                <div style="display: flex; gap: 10px; margin-bottom: 20px; align-items: center; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+                    <div>
+                        <label style="font-size: 12px; font-weight: bold;">Start Time</label>
+                        <input id="slotStart" type="time">
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; font-weight: bold;">End Time</label>
+                        <input id="slotEnd" type="time">
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; font-weight: bold;">Capacity</label>
+                        <input id="slotMax" type="number" value="3" style="width: 80px;" placeholder="Max">
+                    </div>
+                    <button onclick="addTimeSlot()" style="height: 38px; margin-top: 20px;">Add Slot</button>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Max Orders</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="slotsTable"></tbody>
+                </table>
+            </section>
+
+            <section id="rooms">
+                <h2>🏢 Rooms</h2>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input id="roomInput" placeholder="New room name">
+                    <button onclick="addRoom()">Add</button>
+                </div>
+                <ul id="roomList" style="list-style: none;"></ul>
+            </section>
+
+            <section id="menu">
+                <h2>🍔 Menu</h2>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input id="menuName" placeholder="Item Name">
+                    <input id="menuPrice" type="number" placeholder="Price">
+                    <select id="menuCategory">
+                        <option>Breakfast</option><option>Lunch</option><option>Snacks</option><option>Drinks</option>
+                    </select>
+                    <button onclick="addMenuItem()">Add</button>
+                </div>
+                <table>
+                    <thead><tr><th>Item</th><th>Price</th><th>Category</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody id="menuTable"></tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+    <script src="js/admin.js"></script>
+    <script>function logout() { localStorage.clear(); }</script>
+</body>
+</html>

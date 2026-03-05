@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magis Canteen Login</title>
+  <link rel="stylesheet" href="css/auth.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+<div class="logo-wrapper"><div class="logo"><img src="logo.png" alt="Logo" /></div></div>
+<div class="bg"></div>
+
+<div class="auth-container">
+  <div class="card">
+    <h2>🍽️ Magis Canteen Login</h2>
+    <div class="tab-container">
+      <button class="tab active" onclick="showLogin('faculty')">Faculty</button>
+      <button class="tab" onclick="showLogin('staff')">Staff</button>
+      <button class="tab" onclick="showLogin('admin')">Admin</button>
+    </div>
+
+    <div id="faculty-login" class="login-form">
+      <label>Email</label><input id="facultyEmail" />
+      <label>Password</label><input id="facultyPassword" type="password" />
+      <button class="btn login-btn" onclick="facultyLogin()">Login as Faculty</button>
+    </div>
+
+    <div id="staff-login" class="login-form hidden">
+      <label>Email</label><input id="staffEmail" />
+      <label>Password</label><input id="staffPassword" type="password" />
+      <button class="btn staff-btn" onclick="staffLogin()">Login as Staff</button>
+    </div>
+
+    <div id="admin-login" class="login-form hidden">
+      <label>Email</label><input id="adminEmail" />
+      <label>Password</label><input id="adminPassword" type="password" />
+      <button class="btn login-btn" onclick="adminLogin()">Login as Admin</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📝 Faculty Registration</h2>
+    <label>Full Name</label><input id="regName" />
+    <label>Email</label><input id="regEmail" />
+    <label>Phone Number</label><input id="regPhone" type="tel" placeholder="10-digit number" />
+    
+    <label>Department</label>
+    <select id="dept">
+      <option value="IT">IT</option><option value="BUS">Business</option>
+      <option value="CHEM">Chemical Sciences</option><option value="HUM">Humanities</option>
+    </select>
+    <label>Password</label><input id="regPassword" type="password" />
+    <label>Confirm Password</label><input id="regConfirm" type="password" />
+    <button class="btn signup-btn" onclick="facultyRegister()">Sign Up</button>
+  </div>
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

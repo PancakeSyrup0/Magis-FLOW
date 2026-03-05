@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard | F.L.O.W.</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    
+    <audio id="notificationSound" src="audio/alert.mp3" preload="auto"></audio>
+
+    <div style="background: #1f3c88; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+        
+        <div class="sidebar-brand" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none;">
+            <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='">
+            <h2>Kitchen Staff</h2>
+        </div>
+    
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <button id="soundToggleBtn" onclick="toggleSound()" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s;">
+                🔇 Sound: OFF
+            </button>
+            <a href="index.html" onclick="localStorage.clear()" style="color: white; text-decoration: none; font-weight: 500; background: rgba(255,0,0,0.6); padding: 8px 16px; border-radius: 6px;">Logout</a>
+        </div>
+    </div>
+
+    <div style="padding: 30px; max-width: 1200px; margin: 0 auto;">
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('active')">Active Orders</button>
+            <button class="tab-btn" onclick="switchTab('past')">Past Orders</button>
+        </div>
+
+        <section id="activeSection">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3>Incoming Orders (Queue)</h3>
+                <span style="font-size: 14px; color: #666;">Sorted by Time Slot</span>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time Slot</th> 
+                        <th>ID</th>
+                        <th>Items</th>
+                        <th>Room</th>
+                        <th>Contact</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="activeOrdersBody"></tbody>
+            </table>
+        </section>
+
+        <section id="pastSection" class="hidden">
+            <h3>Completed & Cancelled Orders</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time Slot</th> 
+                        <th>ID</th>
+                        <th>Items</th>
+                        <th>Room</th>
+                        <th>Contact</th>
+                        <th>Amount</th>
+                        <th>Final Status</th>
+                        <th>Action</th> </tr>
+                </thead>
+                <tbody id="pastOrdersBody"></tbody>
+            </table>
+        </section>
+
+    </div>
+
+    <div id="receiptModal" class="receipt-modal hidden">
+        <div class="receipt-card">
+            <div class="receipt-header">
+                <h2>F.L.O.W. Canteen</h2>
+                <p>Kitchen Staff Copy</p>
+                <p>Official Order Receipt</p>
+            </div>
+            
+            <div class="receipt-details">
+                <p><b>Order ID:</b> <span id="recOrderId"></span></p>
+                <p><b>Date:</b> <span id="recDate"></span></p>
+                <p><b>Room:</b> <span id="recRoom"></span></p>
+                <p><b>Contact:</b> <span id="recContact"></span></p>
+                <p><b>Status:</b> <span id="recStatus"></span></p>
+            </div>
+
+            <table class="receipt-items">
+                <thead>
+                    <tr>
+                        <th>Qty</th>
+                        <th>Item</th>
+                        <th class="price-col">Price</th>
+                    </tr>
+                </thead>
+                <tbody id="recItemsBody">
+                    </tbody>
+            </table>
+
+            <div class="receipt-total">
+                Total: ₹<span id="recTotal">0</span>
+            </div>
+
+            <div class="receipt-footer">
+                <p>Thank you for using F.L.O.W.!</p>
+            </div>
+
+            <div class="receipt-actions">
+                <button onclick="closeReceipt()">Close</button>
+                <button onclick="printReceipt()" style="background: #28a745;">🖨️ Print PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/staff.js"></script>
+</body>
+</html>

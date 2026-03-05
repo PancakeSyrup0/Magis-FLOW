@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', "Segoe UI", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("https://www.sju.edu.in/uploads/Anouncements/thumb/20220104190152_IMG_7021_20251030032944..webp")
+    center center / cover no-repeat;
+  z-index: -1;
+}
+
+.auth-container {
+  max-width: 1000px;
+  margin: 100px auto 40px auto;
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  flex: 1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  color: #1f3c88;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: #1f3c88;
+  box-shadow: 0 0 0 3px rgba(31, 60, 136, 0.15);
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.login-btn {
+  background: #1f3c88;
+}
+
+.signup-btn {
+  background: #e76f00;
+}
+
+.staff-btn {
+  background: #2a9d8f;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.link {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #1f3c88;
+  font-weight: 500;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+  font-size: 14px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.tab-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 10px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px 8px 0 0;
+  transition: 0.2s;
+}
+
+.tab.active {
+  background: #1f3c88;
+  color: white;
+}
+
+.login-form {
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Logo */
+.logo-wrapper {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.logo {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.logo img {
+  height: 80px;
+}
+
+/* =========================================
+   📱 MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 800px) {
+  .auth-container {
+    flex-direction: column;
+    margin-top: 130px; /* Makes room for the logo at the top */
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .card {
+    padding: 25px 20px; /* Slightly tighter padding for phones */
+  }
+
+  input, select {
+    font-size: 16px; /* 16px is required to prevent iPhones from auto-zooming on inputs */
+    padding: 12px;
+  }
+
+  .btn {
+    padding: 14px; /* Taller buttons for easier thumb tapping */
+    font-size: 1.1rem;
+  }
+
+  .logo img {
+    height: 60px; /* Shrink logo slightly on mobile */
+  }
+}
