@@ -2,11 +2,25 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../db");
 
-/* --- USERS --- */
+/* --- USERS & USER HISTORY --- */
 router.get("/users", async (req, res) => {
     try {
-        // ADDED 'phone' TO THE SELECT QUERY
         const [rows] = await pool.query("SELECT id, name, email, phone, role FROM users ORDER BY name ASC");
+        res.json(rows);
+    } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// NEW: Fetch all orders for a specific user
+router.get("/users/:id/orders", async (req, res) => {
+    try {
+        const [rows] = await pool.query(`
+            SELECT o.order_id, o.items, o.amount, o.status, o.created_at, o.room,
+                   t.start_time, t.end_time
+            FROM orders o
+            LEFT JOIN timeslots t ON o.time_slot_id = t.id
+            WHERE o.user_id = ?
+            ORDER BY o.created_at DESC
+        `, [req.params.id]);
         res.json(rows);
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
@@ -83,7 +97,6 @@ router.delete("/menu/:id", async (req, res) => {
 /* ===========================
    ⏳ TIME SLOTS MANAGEMENT
 =========================== */
-// 1. GET ALL SLOTS
 router.get("/timeslots", async (req, res) => {
     try {
         const [rows] = await pool.query("SELECT * FROM timeslots ORDER BY start_time ASC");
@@ -91,7 +104,6 @@ router.get("/timeslots", async (req, res) => {
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-// 2. ADD NEW SLOT
 router.post("/timeslots", async (req, res) => {
     const { start_time, end_time, max_orders } = req.body;
     try {
@@ -103,7 +115,6 @@ router.post("/timeslots", async (req, res) => {
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-// 3. DELETE SLOT
 router.delete("/timeslots/:id", async (req, res) => {
     try {
         await pool.query("DELETE FROM timeslots WHERE id = ?", [req.params.id]);
@@ -111,7 +122,6 @@ router.delete("/timeslots/:id", async (req, res) => {
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-// 4. UPDATE CAPACITY (Optional: To change max orders for an existing slot)
 router.put("/timeslots/:id", async (req, res) => {
     const { max_orders } = req.body;
     try {
